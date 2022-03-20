@@ -1,1 +1,33 @@
-//
+//第六章第五题 字母金字塔
+// 字母已成型，金字塔尚未完成，仍需努力！
+// 这个题目还没完成
+#include <stdio.h>
+void letter(char a);
+int main()
+{
+	char a;
+	scanf_s("%c", &a);
+	int cnt = 0;
+	int q;
+	for (q=0;cnt<=a-'A';cnt++)
+	{
+
+		letter('A'+cnt);
+		printf("\n");
+	}
+	
+
+	return 0;
+}
+void letter(char a)
+{
+	int i = 0;
+	for (i = 0; i <= a - 'A';i++) {
+	printf("%c", 'A'+i);
+	}
+	int j = a - 'A'-1;
+	for (j;j>=0;j--)
+	{
+		printf("%c",'A'+j);
+	}
+	
