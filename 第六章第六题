@@ -1,0 +1,28 @@
+//第六章第六题 顺序数字表
+#include<stdio.h>
+int square(int x);
+int cube(int x);
+int main(void)
+{
+	int begin, end;
+	printf("请输入开始和结尾的两个数：\n");
+	scanf_s("%d %d", &begin, &end);
+	for (begin; begin <= end; begin++)
+	{
+		printf("%-5d %-5d %-5d", begin, square(begin), cube(begin));
+		printf("\n");
+	}
+
+	return 0;
+}
+int square(int x) 
+{
+	int ret;
+	ret = x * x;
+	return ret;
+}int cube(int x)
+{
+	int ret;
+	ret = x * x * x;
+	return ret;
+}
