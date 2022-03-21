@@ -1,0 +1,34 @@
+//简单的函数循环问题
+
+#include <stdio.h>
+double gap_product(double x, double y);
+int main()
+{
+	printf("请输入两个浮点数：\n");
+	double i, j;
+	int judge=2;
+	while (judge == 2) {
+	judge=scanf_s("%lf %lf", &i, &j);
+	if (judge != 0)
+		printf("gap_product=%lf\n", gap_product(i, j));
+	else
+		break;
+	}
+	
+	printf("感谢您的使用！");
+	
+	
+	 /* int y;					//测试scanf("");的返回值；
+		y= scanf_s("%lf",&i);	//在输入的是数字时（无论是浮点数还是整数）y==1
+		printf("%d", y);*/		//输入其他非数字时，y==0
+			
+
+
+	return 0;
+}
+double gap_product(double x, double y)
+{
+	double ret;
+	ret = (x - y) / (x * y);
+	return ret;
+}
