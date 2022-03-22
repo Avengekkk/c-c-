@@ -1,0 +1,21 @@
+#include <stdio.h>
+//int square(int x);
+#include <math.h>
+int main()
+{
+	const int length = 8;
+	int array[length];
+	for (int i = 0; i < length; i++)
+	{
+		array[i] = pow(2, i);
+	}
+	int i = 0;
+	do 
+	{
+		
+		printf("array[%d]=%d\n", i, array[i] = pow(2, i));
+		i++;
+	} while (i<8);
+	
+	return 0;
+}
