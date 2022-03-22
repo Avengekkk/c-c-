@@ -1,0 +1,32 @@
+//倒序打印八个数，输出
+#include <stdio.h>
+
+int main()
+{
+	const int length = 8;
+	int num[length];
+	
+	
+	int anti_num[length];
+	int j = length;
+	int i = 0;
+	for (; j > 0 and i < length; j--, i++)
+	{	scanf_s("%d", &num[i]);
+		anti_num[j - 1] = num[i];
+		
+	}
+	for (int q = 0; q < length; q++)
+	{
+	printf("%d\t",anti_num[q]);
+	}
+	
+									/*int num[4] = {2,5,67,88};
+									for (int i = 0; i < 4; i++)
+									{
+										printf("%d\t",num[i]);
+									}
+									*///遍历数组的所有元素
+									//不能printf("%d",num);
+
+	return 0;
+}
