@@ -1,0 +1,30 @@
+//循环来求极限，用的是枚举式的算法
+#include <stdio.h>
+//int square(int x);
+#include <math.h>
+int main()
+{
+	int n;
+	int m;
+	int i,j;
+	printf("请输入第n项，我会算出两个序列的前n项和：\n");
+	scanf_s("%d %d", &n,&m);
+	double fsum = 0.0;
+	for (i = 1; i <= n; i++)
+	{
+		
+		fsum += 1.0 / i;
+		
+	}
+	printf("第一个序列的前%d项和是%lf\n",n, fsum);
+	double ssum = 0.0;
+	for (j = 1; j <= m; j++)
+	{
+		
+		ssum += (1.0 / j) * pow(-1, j - 1);
+		
+	}
+	printf("第二个序列的前%d项和是%lf\n", m, ssum);
+
+	return 0;
+}
