@@ -1,0 +1,33 @@
+//顺序循环平方
+#include <stdio.h>
+int square(int x);
+
+int main()
+{
+	printf("请输入两个数，我将算出他们两个数之间的所有数的平方，直到输入的第一个");
+	printf("数大于或等于二个数\n");
+	int begin=0;
+	int end=1;
+	scanf_s("%d %d",&begin,&end);
+	while (begin < end)
+	{	
+		for (; begin <= end; begin++)
+		{
+			printf("%d\n", square(begin));
+		}
+		scanf_s("%d %d", &begin, &end);
+	}
+	
+	
+		printf("DONE");
+	
+	
+
+	return 0;
+}
+int square(int x)
+{
+	int ret;
+	ret = x * x;
+	return ret;
+}
