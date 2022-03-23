@@ -1,0 +1,31 @@
+//打印两个数组，后一个是前一个得数数组的和
+
+#include <stdio.h>
+//int square(int x);
+#include <math.h>
+#include<stdbool.h>
+int main()
+{
+	const int length = 8;
+	double array1[length];
+	double array2[length];
+
+	printf("请输入8个数值\n");
+	for (int i = 0; i < length; i++)
+	{
+		scanf_s("%lf", &array1[i]);
+		printf("array1[%d]=%0.2lf\t",i, array1[i]);
+	}
+	printf("\n");
+	//for (int j = 0; j < length; j++)
+	
+double sum=0;
+		for (int q = 0; q < length; q++)
+		{
+			
+			sum += array1[q];
+			printf("array2[%d]=%0.2lf\t", q, sum);
+
+		}
+	return 0;
+}
