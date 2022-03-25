@@ -1,0 +1,27 @@
+// 邓巴数与朋友关系
+#include <stdio.h>
+//#define space ' '
+
+#include <math.h>
+#include<ctype.h>
+//int friends (int x);
+#define F_FRIENDS 5
+#define MULTIPLE 2
+#define DNUMBER 150
+int main()
+{
+	int first = F_FRIENDS;
+	int y = first;
+	int i = 1;
+	for (; y < DNUMBER; i++)
+	{
+		y = (y - i) * MULTIPLE;
+		
+		/*if (y >= 150)
+			break;*/
+		printf("第%d周有%d朋友\n", i, y);
+	}
+	
+	
+	return 0;
+}
