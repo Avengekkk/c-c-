@@ -1,0 +1,39 @@
+//输入数的奇偶个数与平均数
+#include <stdio.h>
+#include <math.h>
+#include<ctype.h>
+
+int main()
+{
+	int num;
+	int sum1 = 0;
+	int sum2 = 0;
+	double ave1=0;
+	double ave2=0;
+	int cnt1 = 0;
+	int cnt2 = 0;
+
+	printf("请输入整数，按0时停止输入\n");
+	scanf_s("%d", &num);
+	while (num != 0)
+	{
+		if (num % 2 == 0)
+		{
+			sum1 += num;
+			cnt1++;
+			ave1 = 1.0 * sum1 / cnt1;
+		}
+		if (num % 2 != 0)
+		{
+			sum2 += num;
+			cnt2++;
+			ave2 = 1.0 * sum2 / cnt2;
+		}
+		scanf_s("%d", &num);
+	}
+
+	printf("偶数个数为%d,平均数为%.2lf\n", cnt1, ave1);
+	printf("奇数个数为%d,平均数为%.2lf\n", cnt2, ave2);
+	
+	return 0;
+}
