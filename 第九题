@@ -1,0 +1,40 @@
+//给定一个正整数，打印它前面的所有素数
+#include <stdio.h>
+#include <math.h>
+#include<ctype.h>
+void judge(int x);
+int main()
+{
+
+	printf("请输入一个正整数，输入q结束重复输入\n");
+	int num;
+	int q;
+	while ((q = scanf_s("%d", &num))!= 0 and num > 0)
+	{
+		if (num == 1)
+			printf("1不是素数，且前面没有素数，请重新输入一个数");
+		else
+		{
+			for (int j = 2; j <= num; j++)
+			{
+				judge(j);
+			}
+		}
+		printf("\n");
+	}
+
+	printf("感谢您的使用");
+
+	return 0;
+}
+void judge(int x)
+{
+	int isprime = 1;
+	for (int i = 2; i <x; i++)
+	{
+		if (x % i == 0)
+			isprime = 0;
+	}
+	if (isprime == 1)
+			printf("%d\t", x);
+}
