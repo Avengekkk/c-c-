@@ -1,0 +1,53 @@
+//税收问题
+#include <stdio.h>
+#define MIN_HOUR 40
+#define BASIC 10.00
+#define RATE 1.5
+#define B_SALARY 10.00
+#define F_RATE 0.15
+#define S_RATE 0.2
+#define L_RATE 0.25
+#define F_POINT 300
+#define S_POINT 450
+
+int main()
+{
+	int hour;
+	double income;
+	double extra;
+	double real_income;
+	double tax;
+	int q;
+
+	do{
+		printf("请输入工作小时/周\n");
+		q=scanf_s("%d", &hour);
+	if (hour <= 40 and hour>=0)
+	{
+		income = B_SALARY * hour;
+	}
+	else
+	{
+		extra = (hour - MIN_HOUR) * RATE;
+		income = extra + MIN_HOUR * BASIC;
+	}
+	
+	if (income <= F_POINT)
+	{
+		tax = income * F_RATE;
+		real_income = income - tax;
+	}
+	else if (income <= S_POINT)
+	{
+		tax = (income-F_POINT)* S_RATE+F_POINT*F_RATE;
+		real_income = income - tax;
+	}
+	else
+	{
+		tax = (income - S_POINT) * L_RATE + F_POINT * F_RATE + (S_POINT - F_POINT) * S_RATE;
+		real_income = income - tax;
+	}
+	printf("工资总额=$%.3lf，税收=$%.3lf，净收入=$%.3lf\n", income, tax, real_income);
+	} while (q!=0 and hour>0);
+	return 0;
+}
