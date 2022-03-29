@@ -1,0 +1,19 @@
+//调和平均数
+#include <stdio.h>
+#include <string.h>
+double t_ave(double,double);
+int main()
+{
+	double x;
+	double y;
+	scanf_s("%lf %lf", &x, &y);
+	printf("%lf", t_ave(x, y));
+
+	return 0;
+}
+double t_ave(double x, double y)
+{
+	double ret;
+	ret = 2.0 / (1.0 / x + 1.0/ y);
+	return ret;
+}
