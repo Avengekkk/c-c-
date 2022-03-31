@@ -1,0 +1,39 @@
+//三数排序问题
+
+#include <stdio.h>
+#include <string.h>
+void tri_sort(double*, double*, double*);
+double large(double, double);
+double small(double, double);
+int main()
+{
+	double x, y, z;
+	scanf_s("%lf %lf %lf", &x, &y, &z);
+	tri_sort(&x, &y, &z);
+	printf("%lf %lf %lf\n", x, y, z);
+	
+	return 0;
+}
+void tri_sort(double* x, double* y, double* z)
+{
+
+	double f, s, t;
+	f = *x;       //将变量存储在临时变量里很重要，要不然经过赋值和比较后，原值均已改变，影响后面的比较
+	s = *y;
+	t = *z;
+  
+	*x = small(f, small(s, t));
+
+	*y = small(f, large(s, t));
+
+	*z = large(f, large(s, t));
+
+}
+double large(double x, double y)
+{
+	return (x >= y) ? x : y;
+}
+double small(double x, double y)
+{
+	return (x >= y) ? y : x;
+}
