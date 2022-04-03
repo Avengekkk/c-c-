@@ -1,0 +1,41 @@
+//负指数幂的函数
+#include <stdio.h>
+#include <string.h>
+double power(double, int);
+int main()
+{
+	double d_num;
+	int z_num;
+	int q;
+	while ((q = scanf_s("%lf %d", &d_num,&z_num)) == 2)
+	{
+		printf("%lf\n", power(d_num, z_num));
+	}
+
+	return 0;
+}
+
+double power(double d_num, int z_num)
+{
+	double ret=1.0;
+	if (d_num == 0 and z_num==0)
+	{
+		printf("0的0次幂未定义\n");
+		ret = (int)1;
+	}
+	if (z_num > 0)
+	{
+	for (int i = 1; i <= z_num; i++)
+		ret *= d_num;
+	}
+	else if(z_num < 0)
+	{
+		z_num = -z_num;
+		double mid_ret=1.0;
+		for (int i = 1; i <= z_num; i++)
+			mid_ret *= d_num;
+		ret = 1.0 / mid_ret;
+	}
+	return ret;
+	
+}
