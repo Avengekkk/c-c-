@@ -1,0 +1,29 @@
+//斐波那契数列的迭代实现
+
+#include<stdio.h>
+int main()
+{
+	printf("请输入你想知道的斐波那契数列的第n个数\n");
+	int cnt;
+	scanf_s("%d", &cnt);
+		int a = 1;
+		int b = 0;
+		int c=1;
+		//int sum = 0;
+	for (; cnt > 0; cnt--)
+	{
+		
+		c = a + b;
+		a = b;
+		b = c;
+		//sum += c;
+	}
+	printf("%d\n", c);
+	
+
+
+
+
+
+	return 0;
+}
