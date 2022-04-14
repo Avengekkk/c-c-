@@ -1,0 +1,41 @@
+//亲密数的定义：:两个不同的自然数A和B，如果整数A的全部因子(包括1，不包括A本身)之和等于B；
+//且整数B的全部因子(包括1，不包括B本身)之和等于A，则将整数A和B称为亲密数。求3000以内的全部亲密数。
+#include<stdio.h>
+int array[3000];
+void solve() {
+   
+    /*********Begin*********/
+    int k = 0;
+    for (int j = 2; j <= 3000; j++)
+    {
+        int sum = 0;
+
+        for (int i = 1; i < j; i++)
+        {
+
+            if (j % i == 0)
+            {
+                sum += i;
+            }
+        }
+        array[k] = sum;
+        k++;
+    }
+    int q = 0;
+    for (; q < 2999; q++)
+    {
+        if ( q+2 == array[array[q] - 2] and q != array[q] - 2 and q+2 < array[q])
+        {
+            printf("(%d,%d)", q + 2, array[q]);
+        }
+    }
+
+
+
+    /*********End**********/
+}
+int main(void)
+{
+    solve();
+    return 0;
+}
