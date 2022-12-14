@@ -1,0 +1,253 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+#include<queue>
+//1、构造散列函数；
+int hashF(int x) {
+	return x % 11;
+}
+//2、实现散列查找算法。
+int hashSearch(int arr[], int x) {
+	
+	int temp = hashF(x);
+	if (arr[temp] == 0  || arr[temp]==x) {
+		arr[temp] = x;
+		return temp;
+	}
+	else {
+		while (arr[++temp] != 0) {
+		}
+		arr[temp] = x;
+		return temp;
+	}
+}
+void swap(int& a, int& b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
+//,默认为从小到大
+//1、直接插入排序
+void insert_sort(int arr[], int len) {
+	for (int i = 1; i < len; i++) {
+		int temp = arr[i];
+		int j = i - 1;
+		while (j >= 0 && arr[j] > temp) {
+			arr[j + 1] = arr[j];
+			j--;
+		}
+		arr[j + 1] = temp;
+	}
+}
+//直接插入排序
+//2、折半插入排序；
+int mid_search(int, int[], int);
+void insert_mid_sort(int arr[], int len) {
+	for (int i = 1; i < len; i++) {
+		int temp = arr[i];
+		int loc=mid_search(temp, arr, i);
+		for (int j = i; j >loc; j--) {//bug 一定要从后往前交换
+			arr[j ] = arr[j-1];
+		}
+		arr[loc] = temp;
+	}
+}
+int mid_search(int x,int arr[], int len)//要是有序的数组
+{
+	int low = 0;
+	int high = len - 1;
+	while (low < high) {
+		int mid = (low + high) / 2;
+		if (arr[mid] == x) {
+			return mid;
+		}
+		else if (arr[mid] > x) {
+			high = mid - 1;
+		}
+		else {
+			low = mid + 1;
+		}
+	}
+	if (arr[low] == x) {
+		return low+1;
+	}
+	else if(arr[low]>x) {
+		return low;
+	}
+	else {//arr[low]<x
+		return low + 1;
+	}
+}
+//折半插入排序
+//3、希尔排序；
+void hell_sort(int arr[], int len) {
+	int d = len / 2;
+	while (d != 0) {
+	for (int i = 0; i < len-d; i++) {
+		if (arr[i] > arr[i + d]) {
+			swap(arr[i], arr[i + d]);
+		}
+	}
+	d = d / 2;
+}
+}	
+//3、希尔排序；
+//4、起泡排序；
+void bubble_sort(int arr[], int len) {
+	for (int i = 0; i < len; i++) {
+		for (int j = 0; j < len-1-i; j++) {
+			if (arr[j] > arr[j + 1]) {
+				swap(arr[j], arr[j + 1]);
+			}
+		}
+	}
+}
+//4.起泡排序
+//5、快速排序；
+int part(int low, int high, int arr[]) {
+	int pivot = arr[low];
+	while (low < high) {
+		while (low<high && arr[high]>=pivot)//一定是小于或等于
+			--high;
+		arr[low] = arr[high];
+		while (low < high && arr[low] <= pivot)
+			++low;
+		arr[high] = arr[low];
+	}
+	arr[low] = pivot;
+	return low;
+}
+void quick_sort_(int low, int high, int arr[]) {
+	
+	if (low < high) {
+		int mid = part(low, high, arr);//bug mid在if里面
+		quick_sort_(low, mid - 1, arr);
+		quick_sort_(mid + 1, high, arr);
+	}
+}
+void quick_sort(int arr[], int len) {
+	quick_sort_(0, len - 1, arr);
+}
+//5、快速排序；
+//6、直接选择排序；
+void select_sort(int arr[], int len) {
+	for (int i = 0; i < len; i++) {
+		int min = i;
+		for (int j = i+1; j < len; j++) {
+			if (arr[j] <= arr[min])
+			{
+				min = j;
+			}
+		}
+		swap(arr[min], arr[i]);
+	}
+}
+//6.直接选择排序
+//7、堆排序；
+void heapAdjust(int k, int end, int arr[]) {//将堆调整为大根堆
+	int temp = arr[k];
+	for (int i = 2 * k+1; i <= end; i = 2*i+1) {
+		if (i + 1 <= end && arr[i] < arr[i + 1]) {
+			i++;
+		}
+		if (arr[i] > temp) {
+			arr[k] = arr[i];
+			k = i;
+		}
+		else {
+			break;
+		}
+	}
+	arr[k] = temp;
+}
+void heap_sort(int arr[], int len) {
+	//1.建大根堆
+	for (int i = (len - 1) / 2; i >= 0; i--) {
+		heapAdjust(i, len, arr);
+	}
+	for (int i = 0; i < len; i++) {
+		swap(arr[0], arr[len - 1 - i]);
+		heapAdjust(0, len - 2 - i, arr);
+	}
+
+
+};
+//7、堆排序；
+//8、归并排序
+void merge(int low, int mid, int high, int temp[], int arr[]) {
+	int tmp = mid + 1;
+	int k = 0;
+	int s = low;
+	while (low <= mid && tmp <= high)
+	{
+		if (arr[low] < arr[tmp])
+			temp[k++] = arr[low++];
+		else
+			temp[k++] = arr[tmp++];
+	}
+	while (low <= mid)
+		temp[k++] = arr[low++];
+	while (tmp <= high)
+		temp[k++] = arr[tmp++];
+	for (int i = s; i <= high; i++) {
+		arr[i] = temp[i - s];
+	}
+}
+void merge_sort_(int low, int high, int arr[], int temp[]) {
+	if (low < high) {
+		int mid = (low + high) / 2;
+		merge_sort_(low, mid, arr, temp);
+		merge_sort_(mid + 1, high, arr, temp);
+		merge(low, mid, high, temp, arr);
+	}
+	
+}
+void merge_sort(int arr[], int len) {
+	int* temp = new int[len];
+	merge_sort_(0, len - 1, arr, temp);
+}
+
+
+////8、归并排序
+//9、基数排序
+//针对两位整数的正向排序
+void radix_sort(int arr[], int len)  
+{
+	queue<int> first[10];//个位
+	queue<int> second[10];//十位
+	for (int i = 0; i < len; i++) {
+		int g = arr[i] % 10;
+		first[g].push(arr[i]);
+	}
+	for (int i = 0; i < 10; i++) {
+		while (!first[i].empty()) {
+			int num = first[i].front();
+			int s = num / 10;
+			second[s].push(num);
+			first[i].pop();
+		}
+	}
+	int k = 0;
+	for (int i = 0; i < 10; i++) {
+		while (!second[i].empty()) {
+			int num = second[i].front();
+			arr[k++] = num;
+			second[i].pop();
+		}
+	}
+}
+//9、基数排序
+void test01() {
+	int arr[] = { 23, 11, 19, 25, 19, 39, 16, 51, 30,34};
+	//int arr[] = { 1 };
+	int num = sizeof(arr) / sizeof(int);
+	insert_mid_sort(arr, num);
+	for (int i = 0; i < num; i++) {
+		cout << arr[i] << endl;
+	}
+	
+}
+int main() {
+	test01();
+	return 0;
+}
